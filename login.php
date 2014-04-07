@@ -1,3 +1,24 @@
+<?
+	session_start();
+
+	if($_GET['logout'] == 'true') {
+		session_destroy();
+		header("Location: index.php");
+		die();
+        }
+
+	if($_SESSION['login'] == 'true') {
+		header('Location: index.php');
+		exit();
+	}
+
+	if($_POST['username'] == 'sanket' && $_POST['password'] == 'totala') {
+		$_SESSION['login']="true";
+		header('Location: index.php');
+		exit();
+	} else session_destroy();
+?>
+
 <?php require_once("prologue.php"); ?>
 
     <title>IIT-B Smart Greenhouse | Admin Login</title>
@@ -14,7 +35,7 @@
                         <b class="panel-title">IIT Bombay Smart Greenhouse Admin Login</b>
                     </div>
                     <div class="panel-body">
-                        <form class="form-horizontal" role="form">
+                        <form class="form-horizontal" role="form" action="login.php" method="post">
                             <fieldset>
                                 <div class="form-group">
 				    <label for="username" class="col-xs-1 control-label"><i class="fa fa-user fa-lg text-info"></i></label>
@@ -35,7 +56,8 @@
                                 </div>
 
                                 <!-- Change this to a button or input when using this as a form -->
-                                <a href="login.php" class="btn btn-lg btn-success btn-block"><i class="fa fa-sign-in fa-lg"></i> Login</a>
+                                <center><button type="submit" value="submit" class="btn btn-default">Log in</button></center>
+                                <br/>
                             </fieldset>
                         </form>
                     </div>

@@ -9,9 +9,18 @@
 
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
-                <a class="navbar-brand" href="/gh"><b>IIT Bombay Smart Greenhouse</b></a>
-            </div>
+                <a class="navbar-brand" href="/"><b>IIT Bombay Smart Greenhouse</b></a>
+		<div class="pull-right">
+		    <?
+			    session_start();
+			    if (isset($_SESSION['login']) && $_SESSION['login'] == "true")
+				echo '<a class="btn navbar-btn btn-warning" href="login.php?logout=true"><i class="fa fa-sign-out"></i> &nbsp; Log out</a>';
+			    else
+				echo '<a class="btn navbar-btn btn-success" href="login.php"><i class="fa fa-sign-in"></i> &nbsp; Log in</a>';
+		    ?>
+		</div>
             <!-- /.navbar-header -->
+            </div>
         </nav>
         <!-- /.navbar-static-top -->
 
@@ -160,51 +169,36 @@
                 <div class="col-lg-3 col-sm-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <i class="fa fa-bell fa-fw"></i> Notifications Panel
+                            <i class="fa fa-gears fa-fw"></i> Control Panel
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <div class="list-group">
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-comment fa-fw"></i> New Comment
-                                    <span class="pull-right text-muted small"><em>4 minutes ago</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                                    <span class="pull-right text-muted small"><em>12 minutes ago</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-envelope fa-fw"></i> Message Sent
-                                    <span class="pull-right text-muted small"><em>27 minutes ago</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-tasks fa-fw"></i> New Task
-                                    <span class="pull-right text-muted small"><em>43 minutes ago</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                    <span class="pull-right text-muted small"><em>11:32 AM</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-bolt fa-fw"></i> Server Crashed!
-                                    <span class="pull-right text-muted small"><em>11:13 AM</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-warning fa-fw"></i> Server Not Responding
-                                    <span class="pull-right text-muted small"><em>10:57 AM</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-shopping-cart fa-fw"></i> New Order Placed
-                                    <span class="pull-right text-muted small"><em>9:49 AM</em>
-                                    </span>
-                                </a>
+                            <div id="thresholds-update-alerts"></div>
+				<!-- Slider for temp, humi, etc... -->
+				<label for="temperature">Maximum Temperature:</label>
+				<input type="text" id="temperature" class="slide-box" readonly>
+				&deg;C
+				<div id="tempSlider" class="temp"></div>
+				<br/>
+			
+				<label for="light">Minimum Light Intensity:</label>
+				<input type="text" id="light" class="slide-box" readonly>
+				%
+				<div id="lighSlider" class="ligh"></div>
+				<br/>
+			
+				<label for="humidity">Minimum Relative Humidity:</label>
+				<input type="text" id="humidity" class="slide-box" readonly>
+				%
+				<div id="humiSlider" class="humi"></div>
+				<br/>
+				
+				<button class="btn btn-large btn-primary" id="submit-thresholds-button"><i class="fa fa-save fa-lg"></i> &nbsp; Save Thresholds</button>
+				<div class="pull-right">
+				    <button class="btn btn-large" id="reset-thresholds-button"><i class="fa fa-times-circle-o fa-lg"></i> &nbsp; Reset</button>
+				</div>
+						
+                        	<div class="list-group">
                                 <a href="#" class="list-group-item">
                                     <i class="fa fa-money fa-fw"></i> Payment Received
                                     <span class="pull-right text-muted small"><em>Yesterday</em>
@@ -212,7 +206,6 @@
                                 </a>
                             </div>
                             <!-- /.list-group -->
-                            <a href="#" class="btn btn-default btn-block">View All Alerts</a>
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -228,10 +221,8 @@
     <!-- /#wrapper -->
 
     <?php require_once("epilogue.php"); ?>
-    
     <script src="js/sb-admin.js"></script>
-    <script src="js/demo/dashboard-demo.js"></script>
-
+    
 </body>
 
 </html>
