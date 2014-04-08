@@ -7,7 +7,7 @@ $data = shell_exec("tail -n $lim /var/log/serialmon/serialmon.dat");
 $data_arr = explode("\n", $data);
 array_pop($data_arr);
 
-$THRESHOLDS_PATH = "/opt/serialmon/thresholds";
+$THRESHOLDS_PATH = "/var/opt/serialmon/thresholds";
 
 $data_arr = array_map(
     function($line) {

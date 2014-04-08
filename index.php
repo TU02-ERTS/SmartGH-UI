@@ -143,8 +143,8 @@
 				    <thead>
 					<tr>
 					    <th rowspan="2">Reading<br>Timestamp</th>
-					    <th colspan="3">RPi 0 - Master</th>
-					    <th colspan="3">RPi 1 - Slave 1</th>
+					    <th colspan="3">Sensors Module 0</th>
+					    <th colspan="3">Sensors Module 1</th>
 					</tr>
                                         <tr>
                                             <th>T &deg;C</th>
@@ -193,7 +193,7 @@
 				<div id="humiSlider" class="humi"></div>
 				<br/>
 				
-				<button class="btn btn-large btn-primary" id="submit-thresholds-button"><i class="fa fa-save fa-lg"></i> &nbsp; Save Thresholds</button>
+				<button class="btn btn-large btn-primary" id="submit-thresholds-button"><i class="fa fa-save fa-lg"></i> &nbsp; Save</button>
 				<div class="pull-right">
 				    <button class="btn btn-large" id="reset-thresholds-button"><i class="fa fa-times-circle-o fa-lg"></i> &nbsp; Reset</button>
 				</div>
