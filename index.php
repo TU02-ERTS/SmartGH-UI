@@ -33,7 +33,7 @@
             </div>
             <!-- /.row -->
             <div class="row">
-                <div class="col-lg-4 col-md-6 col-sm-5">
+                <div class="col-lg-5 col-md-6 col-sm-5">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <i class="fa fa-caret-square-o-right fa-fw"></i> Camera Feed
@@ -42,11 +42,6 @@
                                     <div class="btn-group btn-group-xs">
                                         <button type="button" class="btn btn-default"><a id="pause-video-menu-item"><i class="fa fa-pause fa-fw"></i></a></button>
                                         <button type="button" class="btn btn-default"><a id="capture-video-menu-item"><i class="fa fa-camera fa-fw"></i></a></button>
-                                    </div>
-                                    <div class="btn-group btn-group-xs">
-                                        <button type="button" class="btn btn-default"><a id="prev-camera-menu-item"><i class="fa fa-chevron-left fa-fw"></i></a></button>
-                                        <button type="button" class="btn btn-default"><a id="camera-grid-menu-item"><i class="fa fa-th-large fa-fw"></i></a></button>
-                                        <button type="button" class="btn btn-default"><a id="next-camera-menu-item"><i class="fa fa-chevron-right fa-fw"></i></a></button>
                                     </div>
                                 </div>
                             </div>
@@ -60,7 +55,7 @@
                     <!-- /.panel -->
                 </div>
                 <!-- /.col-lg-4 .col-md-6 -->
-                <div class="col-lg-5 col-md-6 col-sm-7">
+                <div class="col-lg-4 col-md-6 col-sm-7">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <i class="fa fa-bar-chart-o fa-fw"></i> Sensor Readings
@@ -198,13 +193,7 @@
 				    <button class="btn btn-large" id="reset-thresholds-button"><i class="fa fa-times-circle-o fa-lg"></i> &nbsp; Reset</button>
 				</div>
 						
-                        	<div class="list-group">
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-money fa-fw"></i> Payment Received
-                                    <span class="pull-right text-muted small"><em>Yesterday</em>
-                                    </span>
-                                </a>
-                            </div>
+                        	<div class="list-group" id="notification-panel"></div>
                             <!-- /.list-group -->
                         </div>
                         <!-- /.panel-body -->

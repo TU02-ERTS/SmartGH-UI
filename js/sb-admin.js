@@ -43,34 +43,6 @@ $(function() {
 
     $("#capture-video-menu-item").click(function() {window.location.href = VIDEO_FEED_SRC_URL + current_camera;});
 
-    $("#next-camera-menu-item").click(function() {
-        if($(this).parent().hasClass("disabled")) return;
-
-        if(current_camera < MAX_CAMERA_ID) {
-            ++current_camera;
-            update_video_feed();
-            $("#prev-camera-menu-item").parent().removeClass("disabled");
-            if(current_camera == MAX_CAMERA_ID) $(this).parent().addClass("disabled");
-            else                                $(this).parent().removeClass("disabled");
-        } else $(this).parent().addClass("disabled");
-    });
-
-    $("#prev-camera-menu-item")
-        .click(function() {
-            if($(this).parent().hasClass("disabled")) return;
-
-            if(current_camera > MIN_CAMERA_ID) {
-                --current_camera;
-                update_video_feed();
-                $("#next-camera-menu-item").parent().removeClass("disabled");
-                if(current_camera == MIN_CAMERA_ID) $(this).parent().addClass("disabled");
-                else                                $(this).parent().removeClass("disabled");
-            } else $(this).parent().addClass("disabled");
-        })
-        .parent().addClass("disabled");
-
-    $("#camera-grid-menu-item").click(function() {window.location.href = "view_camera_grid.php"});
-
     $("#tempSlider").slider({
         range: "max",
         min: 10, max: 50,
@@ -134,11 +106,21 @@ function update_video_feed() {
 
 function update_sensor_readings() {
     $.getJSON("get_last_readings.php?limit=" + SENSOR_READINGS_COUNT, function(data) {
-        if (!$("#reset-thresholds-button").hasClass("btn-primary")) {
+       if (!$("#reset-thresholds-button").hasClass("btn-primary")) {
             $("#tempSlider").slider("value", data.tT);
             $("#lighSlider").slider("value", data.tL);
             $("#humiSlider").slider("value", data.tRH);
         }
+
+        $("#notification-panel").empty();
+        $.map(data.evts, function(evt) {
+            $("#notification-panel").prepend(
+                "<a href='#' class='list-group-item "
+                + (evt.stat == 0 ? "" : "list-group-item-warning") + "'><i class='fa "
+                + (evt.stat == 0 ? "fa-check" : "fa-warning") + " fa-fw'></i> &nbsp;"
+                + evt.msg + "<span class='pull-right text-muted small'><em>"
+                + evt.T + "</em></span></a>"
+        );});
 
         $("#sensor-readings-table > tbody").empty();
         $.map(data.vals, function(reading) {$("#sensor-readings-table > tbody").prepend(
