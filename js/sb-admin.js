@@ -1,6 +1,6 @@
 const MIN_CAMERA_ID = 0
 const MAX_CAMERA_ID = 1
-const VIDEO_FEED_DELAY = 3000;
+const VIDEO_FEED_DELAY = 4250;
 const VIDEO_FEED_SRC_URL = "get_current_view.php?camera="
 
 const SENSOR_READINGS_COUNT = 7;
